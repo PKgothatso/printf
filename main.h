@@ -1,5 +1,5 @@
-#define MAIN_H
 #ifndef MAIN_H
+#define MAIN_H
 #include <stdio.h>
 #include <unistd.h>
 #include <stdarg.h>
@@ -38,7 +38,7 @@ struct fmt
  * @fmt: The format specifier.
  * @fm_t: The associated function.
  */
-typedef struct fmt_t;
+typedef struct fmt fmt_t;
 
 int _printf(const char *format, ...);
 int handle_print(const char *fmt, int *i,
