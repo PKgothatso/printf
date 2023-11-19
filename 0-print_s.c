@@ -1,5 +1,4 @@
 #include "main.h"
-
 /** 
  * printf_string - string to be printed
  * @val: arguments passed
@@ -17,7 +16,7 @@ int printf_string(va_list val)
 		{
 
 			str = "(null)";
-	                len = _strlen(str);
+			len = _strlen(str);
 			for (i = 0; i < len; i++)
 				_putchar(str[i]);
 			return (len);
