@@ -26,5 +26,3 @@ int strlenc(const char *str)
 		;
 		return (i);
 }
-		
-
