@@ -1,4 +1,15 @@
+#ifndef MAIN_H
+#define MAIN_H
+#include <stdio.h>
+#include <stdlib.h>
+#include <stadarg.h>
+
 int _strlen(char *str);
+int print_37(void);
+int printf_char(va_list val);
+int printf_string(va_list val);
+int _strlen(const char *str);
+
 int _printf(const char *format, ...);
 int handle_print(const char *fmt, int *i,
 va_list list, char buffer[], int flags, int width, int precision, int size);
