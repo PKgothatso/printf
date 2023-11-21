@@ -1,5 +1,4 @@
 #include "main.h"
-
 /**
  * _printf - Custom printf function that selects the correct function to print.
  * @format: Format string containing specifiers.
@@ -8,7 +7,7 @@
  */
 int _printf(const char * const format, ...)
 {
-	/* Array of specifier-function pairs */
+
 	convert p[] = {
 		{"%s", print_s}, {"%c", print_c},
 		{"%%", print_37},
@@ -24,7 +23,6 @@ int _printf(const char * const format, ...)
 
 	va_start(args, format);
 
-	/* Check for invalid format or empty format string */
 	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
 
@@ -32,8 +30,7 @@ int _printf(const char * const format, ...)
 	{
 		j = 13;
 		while (j >= 0)
-		{
-			/* Check if the current format matches a specifier */
+	{		
 			if (p[j].ph[0] == format[i] && p[j].ph[1] == format[i + 1])
 			{
 				length += p[j].function(args);
@@ -42,13 +39,10 @@ int _printf(const char * const format, ...)
 			}
 			j--;
 		}
-
-		/* If no match, print the character */
 		_putchar(format[i]);
 		length++;
 		i++;
 	}
-
 	va_end(args);
 	return (length);
 }
