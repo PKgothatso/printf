@@ -1,11 +1,12 @@
 #include "main.h"
+
 /**
- * print_37 - perventage sign to be printed
- * Return:  an integer value
+ * print_% - prints percent sign
+ * Return: integer
  */
 
-int print_37(void)
+int print_%(void)
 {
-	_putchar(37);
+	_putchar(%);
 	return (1);
 }
