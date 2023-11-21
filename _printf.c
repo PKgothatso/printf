@@ -1,88 +1,45 @@
 #include "main.h"
-
 /**
- * print_% - prints percent sign
- * Return: integer
+ * _printf - is a function that selects the correct function to print.
+ * @format: identifier to look for.
+ * Return: the length of the string.
  */
-
-int print_%(void)
+int _printf(const char * const format, ...)
 {
-        _putchar(%);
-        return (1);
-}
+	convert p[] = {
+		{"%s", print_s}, {"%c", print_c},
+		{"%%", print_37},
+		{"%i", print_i}, {"%d", print_d}, {"%r", print_revs},
+		{"%R", print_rot13}, {"%b", print_bin},
+		{"%u", print_unsigned},
+		{"%o", print_oct}, {"%x", print_hex}, {"%X", print_HEX},
+		{"%S", print_exc_string}, {"%p", print_pointer}
+	};
 
-#include "main.h"
+	va_list args;
+	int i = 0, j, length = 0;
 
-/**
- * printf_char - char to be printed
- * @val: arguments to be passed
- * Return: 1.
- */
-int printf_char(va_list val)
-{
-        char str;
+	va_start(args, format);
+	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
+		return (-1);
 
-        str = va_arg(val, int);
-        _putchar(str);
-        return (1);
-}
-
-#include "main.h"
-/**
- * printf_string - string to be printed
- * @val: arguments passed
- * Return: length of the string
- */
-
-int printf_string(va_list val)
-{
-        int i;
-        int len;
-        char *str;
-
-        str = va_arg(val, char *)
-                if (str == NULL)
-                {
-
-                        str = "(null)";
-                        len = _strlen(str);
-                        for (i = 0; i < len; i++)
-                                _putchar(str[i]);
-                        return (len);
-                }
-                else
-                {
-                        len = _strlen(str);
-                        for (i = 0; i < len; i++)
-                                _putchar(str[i]);
-                        return (len);
-}
-
-#include "main.h"
-
-/**
- * _strlen - length of the string is returned
- * @str: pointer that is a string
- * Return: 1
- */
-int _strlen(char *str)
-{
-        int i;
-
-        for (i = 0; str[i] != 0; i++)
-                ;
-        return (i);
-}
-/**
- * _strlen - strlen function but used for constant char pointer str
- * @str: pointer that is a character
- * Return: 1
- */
-int strlenc(const char *str)
-{
-        int i;
-
-        for (i = 0; str[i] != 0; i++)
-                ;
-                return (i);
+	while (format[i] != '\0')
+	{
+		j = 13;
+		while (j >= 0)
+		{
+			if (p[j].ph[0] == format[i] && p[j].ph[1] == format[i + 1])
+			{
+				length += p[j].function(args);
+				i = i + 2;
+				goto Here;
+			}
+			j--;
+		}
+		_putchar(format[i]);
+		length++;
+		i++;
+	}
+	va_end(args);
+	return (length);
 }
