@@ -2,11 +2,13 @@
 #define MAIN_H
 #include <stdio.h>
 #include <stdlib.h>
-#include <stadarg.h>
+#include <stdarg.h>
+#include <string.h>
 
 int _strlen(char *str);
 int print_37(void);
 int print_dec(va_list args);
+int print_bin(va_list val);
 int print_int(va_list args);
 int printf_char(va_list val);
 int printf_string(va_list val);
