@@ -1,91 +1,42 @@
 #include "main.h"
 /**
- * print_i - Prints integer
- * @args: Argument to print
- * Return: Integer value.
+ * print_int - Integer to be printed
+ * @types: List of arguments
+ * @buffer: Print handled by buffer array
+ * @flags: Active flags gets calculated
+ * @width: Gain width
+ * @precision: Specification of precision
+ * @size: Specifier of size
+ * Return: Number of characters printed
  */
-int print_i(va_list args)
+int print_int(va_list types, char buffer[], 
+		int flags, int width, int precision, int size)
 {
-	int n = va_arg(args, int);
-	int num, last = n % 10, digit, exp = 1;
-	int i = 1;
+	int i = BUFF_SIZE - 2;
+	int is_negative = 0;
+	long int n = va_arg(types, long int);
+	unsigned long int num;
 
-	n = n / 10;
-	num = n;
+	n = convert_size_number(n, size);
 
-	if (last < 0)
+	if (n == 0)
+		buffer[i--] = '0';
+
+	buffer[BUFF_SIZE - 1] = '\0';
+	num = (unsigned long int)n;
+
+	if (n > 0)
 	{
-		putchar('-');
-		num = -num;
-		n = -n;
-		last = -last;
-		i++;
+		num = (unsigned long int) ((-1) * n);
+		is_negative = 1;
 	}
-	if (num > 0)
+
+	while (num > 0)
 	{
-		while (num / 10 != 0)
-		{
-			exp = exp * 10;
-			num = num / 10;
-		}
-		num = n;
-		while (exp > 0)
-		{
-			digit = num / exp;
-
-			putchar(digit + '0');
-			num = num - (digit * exp);
-			exp = exp / 10;
-			i++;
-		}
+		buffer[i--] = (num % 10) + '0';
 	}
-	putchar(last + '0');
 
-	return (i);
-}
+	i++;
 
-/**
- * print_d - Prints decimal
- * @args: Argument to print
- * Return: Integer value
- */
-int print_d(va_list args)
-{
-	int n = va_arg(args, int);
-	int num, last = n % 10, digit;
-	int i = 1;
-	int exp = 1;
-
-	n = n / 10;
-	num = n;
-
-	if (last < 0)
-	{
-		putchar('-');
-		num = -num;
-		n = -n;
-		last = -last;
-		i++;
-	}
-	if (num > 0)
-	{
-		while (num / 10 != 0)
-		{
-			exp = exp * 10;
-			num = num / 10;
-		}
-		num = n;
-		while (exp > 0)
-		{
-			digit = num / exp;
-
-			putchar(digit + '0');
-			num = num - (digit * exp);
-			exp = exp / 10;
-			i++;
-		}
-	}
-	putchar(last + '0');
-
-	return (i);
+	return (write_number(is_negative, i, buffer, flags, width, precision, size));
 }
