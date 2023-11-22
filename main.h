@@ -4,20 +4,9 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdlib.h>
-#include <stdarg.h>
-#include <string.h>
-
-int _strlen(char *str);
-int print_37(void);
-int print_d(va_list args);
-int print_bin(va_list val);
-int print_i(va_list args);
-int printf_char(va_list val);
-int printf_string(va_list val);
-int _strlen(const char *str);
-
-=======
 #include <unistd.h>
+
+
 
 /**
  * struct format - Converter for printf.
@@ -53,7 +42,6 @@ int print_37(void);
 int print_c(va_list val);
 int print_s(va_list val);
 int _putchar(char c);
->>>>>>> 93ffc6ee29c33cb3945b9a3044c559529aee6e42
 int _printf(const char *format, ...);
 
 #endif
