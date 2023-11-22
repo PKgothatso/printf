@@ -34,7 +34,7 @@ int print_oct(va_list val);
 int print_bin(va_list val);
 int print_revs(va_list args);
 int print_rot13(va_list args);
-int print_i(va_list arg);
+int print_i(va_list args);
 int print_d(va_list args);
 int _strlen(char *s);
 int rev_string(char *s);

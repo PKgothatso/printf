@@ -4,9 +4,9 @@
  * @args: Argument to be printed
  * Return: Integer value.
  */
-int print_i(va_list arg)
+int print_i(va_list args)
 {
-	int n = va_arg(arg, int);
+	int n = va_arg(args, int);
 	int num, last = n % 10, digit, exp = 1;
 	int i = 1;
 
